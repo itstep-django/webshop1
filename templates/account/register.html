@@ -6,6 +6,17 @@
 
 {% block content %}
 {% load static %}
+
+<div>
+    <h4>
+        Вы уже зарегистрированы? &nbsp; > &nbsp;
+        <span>
+            <a style="color: blue; font-size: 0.8em" href="/account/entry">Вход</a>
+        </span>
+    </h4>
+    <hr>
+</div>
+
 <form id="form-1" action="/account/register" method="post" onsubmit="return false">
     {% csrf_token %}
     <p>
@@ -51,4 +62,5 @@
         margin-right: 5px;
     }
 </style>
+<script src="{% static 'js/register.js' %}"></script>
 {% endblock content %}
