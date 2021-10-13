@@ -11,9 +11,20 @@ $(document).ready(function() {
         let loginX = $('#login').val();
         let loginR = /^[a-zA-Z][a-zA-Z0-9_]{5,15}$/;
         if (loginR.test(loginX) == true) {
-            $('#login-err').text('');
-            res1 = true;
-            // проверка занятости логина ...
+            // Проверка занятости логина ...
+            $.ajax({
+                url: '/account/ajax_reg',
+                data: 'login=' + loginX,
+                success: function(result) {
+                    if (result.message === 'занят') {
+                        $('#login-err').text('Логин - занят! Введите другой');
+                        res1 = false;
+                    } else {
+                        $('#login-err').text('');
+                        res1 = true;
+                    }
+                }
+            });
         } else {
             $('#login-err').text('Логин - HE правильный');
             res1 = false;
